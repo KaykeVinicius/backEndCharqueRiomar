@@ -36,16 +36,17 @@ class SetoresController < ApplicationController
   # DELETE /setores/1
   def destroy
     @setor.destroy!
+    render json: { message: "Setor deletado" }
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_setor
-      @setor = Setor.find(params.expect(:id))
+      @setor = Setor.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def setor_params
-      params.expect(setor: [ :nome ])
+      params.require(:setor).permit(:nome)
     end
 end

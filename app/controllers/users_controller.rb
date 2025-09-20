@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  include AuthorizeRequest
-  skip_before_action :authorize_request, only: [:create]
-  before_action :set_user, only: %i[ show update destroy ]
+  # include AuthorizeRequest
+  #  before_action :set_user, only: %i[ show update destroy ]
 
   # GET /users
   def index

@@ -1,6 +1,8 @@
 class LancamentoSerializer < ActiveModel::Serializer
-  attributes :id, :data, :valor
-  has_one :setor
-  has_one :user
-  has_one :categoria
+  attributes :id, :setor_id, :user_id, :categoria_id, :data, :valor
+
+  # Comentando relações para teste sem auth
+  # belongs_to :user
+  # belongs_to :setor
+  # belongs_to :categoria
 end
