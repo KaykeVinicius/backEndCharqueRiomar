@@ -4,7 +4,6 @@ class CategoriasController < ApplicationController
   # GET /categorias
   def index
     @categorias = Categoria.all
-
     render json: @categorias
   end
 
@@ -16,7 +15,6 @@ class CategoriasController < ApplicationController
   # POST /categorias
   def create
     @categoria = Categoria.new(categoria_params)
-
     if @categoria.save
       render json: @categoria, status: :created, location: @categoria
     else
@@ -36,16 +34,16 @@ class CategoriasController < ApplicationController
   # DELETE /categorias/1
   def destroy
     @categoria.destroy!
+    render json: { message: "Categoria deletada" }
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_categoria
-      @categoria = Categoria.find(params.expect(:id))
+      @categoria = Categoria.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def categoria_params
-      params.expect(categoria: [ :nome ])
+      params.require(:categoria).permit(:nome)
     end
 end

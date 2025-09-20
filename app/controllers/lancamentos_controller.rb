@@ -1,5 +1,5 @@
 class LancamentosController < ApplicationController
-  before_action :set_lacamento, only: %i[ show update destroy ]
+  before_action :set_lancamento, only: %i[ show update destroy ]
 
   # GET /lancamentos
   def index
@@ -15,7 +15,7 @@ class LancamentosController < ApplicationController
 
   # POST /lancamentos
   def create
-    @lancamento = Lancamento.new(lacamento_params)
+    @lancamento = Lancamento.new(lancamento_params)
 
     if @lancamento.save
       render json: @lancamento, status: :created, location: @lancamento
@@ -26,7 +26,7 @@ class LancamentosController < ApplicationController
 
   # PATCH/PUT /lancamentos/1
   def update
-    if @lancamento.update(lacamento_params)
+    if @lancamento.update(lancamento_params)
       render json: @lancamento
     else
       render json: @lancamento.errors, status: :unprocessable_entity
@@ -40,12 +40,12 @@ class LancamentosController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_lacamento
+    def set_lancamento
       @lancamento = Lancamento.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
-    def lacamento_params
-      params.expect(lancamento: [ :setor_id, :user_id, :data, :valor ])
+    def lancamento_params
+      params.expect(lancamento: [ :setor_id, :user_id, :categoria_id, :data, :valor ])
     end
 end

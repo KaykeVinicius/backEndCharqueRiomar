@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_19_140633) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_20_144324) do
   create_table "categorias", force: :cascade do |t|
     t.string "nome"
     t.datetime "created_at", null: false
@@ -20,10 +20,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_140633) do
   create_table "lancamentos", force: :cascade do |t|
     t.integer "setor_id", null: false
     t.integer "user_id", null: false
+    t.integer "categoria_id", null: false
     t.date "data"
     t.decimal "valor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["categoria_id"], name: "index_lancamentos_on_categoria_id"
     t.index ["setor_id"], name: "index_lancamentos_on_setor_id"
     t.index ["user_id"], name: "index_lancamentos_on_user_id"
   end
@@ -51,6 +53,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_140633) do
     t.index ["tipo_usuario_id"], name: "index_users_on_tipo_usuario_id"
   end
 
+  add_foreign_key "lancamentos", "categorias"
   add_foreign_key "lancamentos", "setores"
   add_foreign_key "lancamentos", "users"
   add_foreign_key "users", "tipos_usuarios"

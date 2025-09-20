@@ -3,11 +3,13 @@
 one:
   setor: one
   user: one
-  data: 2025-09-19
+  categoria: one
+  data: 2025-09-20
   valor: 9.99
 
 two:
   setor: two
   user: two
-  data: 2025-09-19
+  categoria: two
+  data: 2025-09-20
   valor: 9.99
