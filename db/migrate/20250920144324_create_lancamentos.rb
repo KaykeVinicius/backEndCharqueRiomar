@@ -1,6 +1,5 @@
 class CreateLancamentos < ActiveRecord::Migration[8.0]
   def change
-    unless table_exists?(:lancamentos)
       create_table :lancamentos do |t|
         t.references :setor, null: false, foreign_key: true
         t.references :user, null: false, foreign_key: true
