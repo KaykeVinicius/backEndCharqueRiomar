@@ -4,13 +4,13 @@ class LancamentosController < ApplicationController
 
   # GET /lancamentos
   def index
-    @lancamentos = Lancamento.includes(:setor, :user, :categoria).all
-    render json: @lancamentos.as_json(include: [:setor, :user, :categoria])
+    @lancamentos = Lancamento.includes(:setor,  :categoria).all
+    render json: @lancamentos.as_json(include: [:setor,  :categoria])
   end
 
   # GET /lancamentos/1
   def show
-    render json: @lancamento.as_json(include: [:setor, :user, :categoria])
+    render json: @lancamento.as_json(include: [:setor,  :categoria])
   end
 
   # POST /lancamentos
@@ -18,7 +18,7 @@ class LancamentosController < ApplicationController
     @lancamento = Lancamento.new(lancamento_params)
 
     if @lancamento.save
-      render json: @lancamento.as_json(include: [:setor, :user, :categoria]), status: :created
+      render json: @lancamento.as_json(include: [:setor,  :categoria]), status: :created
     else
       render json: @lancamento.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class LancamentosController < ApplicationController
   # PATCH/PUT /lancamentos/1
   def update
     if @lancamento.update(lancamento_params)
-      render json: @lancamento.as_json(include: [:setor, :user, :categoria])
+      render json: @lancamento.as_json(include: [:setor,  :categoria])
     else
       render json: @lancamento.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class LancamentosController < ApplicationController
   end
 
   def lancamento_params
-    params.require(:lancamento).permit(:setor_id, :user_id, :categoria_id, :data, :valor)
+    params.require(:lancamento).permit(:setor_id, :categoria_id, :data, :valor)
   end
 end
